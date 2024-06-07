@@ -11,7 +11,7 @@ grayColour="\e[0;37m\033[1m"
 
 nmaptest() {
   
-  dep=(nmap whatweb)
+  dep=(nmap whatweb gobuster)
   for i in "$dep[@]"; do
     test -f /usr/bin/$i
     if [ "$(echo $?)" -ne 0 ]; then
@@ -55,7 +55,8 @@ else
       echo "3) Escaneo silencioso (Puede tardar un poco mas de lo normal)"
       echo "4) Escaneo de serviciosos y versiones"
       echo "5) WhatWeb"
-      echo "6) Salir"
+      echo "6) Gobuster simple"
+      echo "99) Salir"
       echo -ne "$greenColour\n[?]$grayColour Seleccione una opcion: " && read opcion
       case $opcion in
        1)
@@ -84,6 +85,10 @@ else
        enter
        ;;
        6)
+       tput civis 
+       clear && echo -ne "\n${greenColour}[+]${grayColour} Iniciando...\n\n" && gobuster dir -u http://$ip -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+       ;;
+       99)
        break
        ;;
        *)
