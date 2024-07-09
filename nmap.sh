@@ -89,6 +89,7 @@ else
        clear && echo -ne "\n${greenColour}[+]${grayColour} Iniciando...\n\n" && gobuster dir -u http://$ip -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
        ;;
        99)
+       tput cnorm
        break
        ;;
        *)
@@ -99,6 +100,7 @@ else
 fi
 
 finish() {
+    tput cnorm
     echo -e "\n$redColour[!]$grayColour Cerrando el script..."
     exit 
 }
